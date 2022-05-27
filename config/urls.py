@@ -14,12 +14,24 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf.urls.static import static
 
+from rest_framework.routers import DefaultRouter
+from .swagger import swagger_urls
 from . import settings
+
+from navat import views
+from our_team.views import TeamViewSet
+
+router = DefaultRouter()
+router.register('food', views.FoodViewSet)
+router.register('team', TeamViewSet)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/v1/', include(router.urls))
 ]
+urlpatterns += swagger_urls
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'navat.apps.NavatConfig',
+    'our_team.apps.OurTeamConfig',
 ]
 
 MIDDLEWARE = [
